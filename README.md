@@ -2,9 +2,9 @@
 
 Weather App is a website to display weather information based on city.
 
-## Description
+## Screenshots
 
-Weather App takes in a city and unit (default is imperial) and outputs the weather information.
+![image of site homepage](https://github.com/claire-md/weather-app/tree/main/public/)
 
 ## Acknowledgements
 
