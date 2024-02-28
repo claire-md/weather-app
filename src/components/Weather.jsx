@@ -5,12 +5,11 @@ import Details from "./Details";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-export default function Weather({ city, isMetric }) {
+export default function Weather({ city, unit }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState([]);
+  const [isMetric, setIsMetric] = useState(false);
   const [error, setError] = useState(null);
-
-  const units = isMetric ? "metric" : "imperial";
 
   useEffect(() => {
     async function fetchWeather() {
@@ -19,7 +18,7 @@ export default function Weather({ city, isMetric }) {
           "https://api.openweathermap.org/data/2.5/weather?q=" +
             city +
             "&units=" +
-            units +
+            unit +
             "&appid=" +
             API_KEY
         );
@@ -29,6 +28,7 @@ export default function Weather({ city, isMetric }) {
           throw new Error("Failed to fetch data");
         }
 
+        setIsMetric(unit === "metric" ? true : false);
         setData(resData);
         setIsLoaded(true);
       } catch (err) {
@@ -38,7 +38,7 @@ export default function Weather({ city, isMetric }) {
     }
 
     fetchWeather();
-  }, [city]);
+  }, [city, unit]);
 
   if (error) {
     return <div>Error: {error.message}</div>;

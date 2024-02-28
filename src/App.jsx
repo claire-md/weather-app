@@ -11,10 +11,10 @@ export default function App() {
     e.preventDefault();
 
     const enteredCity = city.current.value;
-    const isChecked = units.current.checked;
+    const enteredUnit = units.current.checked ? "metric" : "imperial";
 
     if (validateCity(enteredCity)) {
-      setWeather(<Weather city={enteredCity} isMetric={isChecked} />);
+      setWeather(<Weather city={enteredCity} unit={enteredUnit} />);
     } else {
       setWeather(<div>Not a valid city</div>);
     }
